@@ -11,3 +11,8 @@ Version 0.2 (03/08):
 - first views
 - Search function added with a simple set of data (no sql yet)
 
+Version 0.3 (05/08):
+- Integration of PostGres Model (30ish products, 2 categories)
+- Modification of view.detail in accordance
+- Modification of view.search in accordance (search based on product name)
+=> Still a little problem on list display, a list bullet appears between each item

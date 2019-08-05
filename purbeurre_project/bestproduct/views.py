@@ -3,43 +3,44 @@ import requests
 
 from django.http import HttpResponse
 
-from .models import USERS
+from .models import Product
 
 def index(request):
-    message = "Salut tout le monde !"
+    # request products (category for now, query later versions)
+    products = Product.objects.filter(category="jus-de-fruits").order_by('nutrition_grade')[:12]
+
+    formatted_products = ["<li>{}</li>".format(product.name) for product in products]
+    message = """<ul>{}</ul>""".format("\n".join(formatted_products))
     return HttpResponse(message)
 
-def listing(request):
-    users = ["<li>{}</li>".format(user['name']) for user in USERS]
-    message = """<ul>{}</ul>""".format("\n".join(users))
+
+# def listing(request):
+#     users = ["<li>{}</li>".format(user['name']) for user in USERS]
+#     message = """<ul>{}</ul>""".format("\n".join(users))
+#     return HttpResponse(message)
+
+
+def detail(request, product_id):
+    product = Product.objects.get(pk=product_id)
+    message = "Le produit est {}, de la marque {}. Sa note nutritive est {}.".format(product.name, product.brand, product.nutrition_grade)
     return HttpResponse(message)
 
-def detail(request, user_id):
-    id = int(user_id)
-    user = USERS[id]
-    pizza = " ".join([pizza['name'] for pizza in user['pizza']])
-    message = "Le client est {}. Il a commandé une {}".format(user['name'], pizza)
-    return HttpResponse(message)
 
 def search(request):
     query = request.GET.get('query')
     if not query:
-        message = "Aucun utilisateur n'est demandé"
-    else:
-        users = [
-            user for user in USERS
-            if query in " ".join(product['name'] for product in user['pizza'])
-        ]
+        message = "Aucun produit n'est demandé"
 
-        if len(users) == 0:
+    else:
+        products = Product.objects.filter(name__icontains=query)
+
+        if not products.exists():
             message = "Misère de misère, nous n'avons trouvé aucun résultat !"
         else:
-            users = ["<li>{}</li>".format(user['name']) for user in users]
+            products = ["<li>{}</li>".format(product.name) for product in products]
             message = """
-                Nous avons trouvé les utilisateurs correspondant à votre requête ! Les voici :
-                <ul>
-                    {}
-                </ul>
-            """.format("</li><li>".join(users))
+                Nous avons trouvé les produits correspondant à votre requête ! Les voici :
+                <ul>{}</ul>
+            """.format("</li><li>".join(products))
 
     return HttpResponse(message)
