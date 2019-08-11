@@ -20,3 +20,9 @@ Version 0.3 (05/08):
 Version 0.4 (06/08):
 - View of replacement of product (named replace instead of search to avoid confusion)
 - Ground work set for front dev initiation
+
+Version 0.5 (11/08):
+- Front dev begun, homepage, detail and replacement page are made (fex adjustments still needed)
+- Back and front linked for simple queries on the limited database, working as intended when query are accepted (bad queries not handled yet)
+- Change in url paths to correct a bug when filling form from homepage
+- Replacement page working as intended, graphic not on poipnt, may skip that.

@@ -6,12 +6,19 @@ from django.urls import path
 
 from bestproduct import views
 
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('', include('bestproduct.urls', namespace='besproduct')),
+]
+
+"""
 urlpatterns = [
     url(r'^$', views.index),
     url(r'^bestproduct/', include(('bestproduct.urls', 'bestproduct'), namespace='bestproduct')),
     url(r'^admin/', admin.site.urls)
 ]
-
+"""
 if settings.DEBUG:
     import debug_toolbar
     urlpatterns = [
