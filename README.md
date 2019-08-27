@@ -25,4 +25,11 @@ Version 0.5 (11/08):
 - Front dev begun, homepage, detail and replacement page are made (fex adjustments still needed)
 - Back and front linked for simple queries on the limited database, working as intended when query are accepted (bad queries not handled yet)
 - Change in url paths to correct a bug when filling form from homepage
-- Replacement page working as intended, graphic not on poipnt, may skip that.
+- Replacement page working as intended, graphic not on point, may skip that.
+
+Version 0.6 (27/08):
+- Premice for User usage, add of register and login page and correct interface
+- Add of User in database to handle inscription and favorites
+- Updates of some links
+- Add of 404 and 500 error page but tests are needed under production state
+- Add of admin interface from where database had been filled with around 5000 products

@@ -1,16 +1,18 @@
-from django.shortcuts import render
-from django.http import HttpResponse
+from django.shortcuts import render, get_object_or_404, redirect
+
+from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 
 import requests
 
-from .models import Product
-
+from .models import Product, UserFavorite
+from .forms import UserRegisterForm
 
 def index(request):
     return render(request, 'bestproduct/index.html')
 
 def detail(request, product_id):
-    product = Product.objects.get(pk=product_id)
+    product = get_object_or_404(Product, pk=product_id)
     context = {
         'image' : product.picture,
         'name' : product.name,
@@ -54,3 +56,40 @@ def replace(request):
         # """.format(" ".join(substitutes), choice.name)
 
     # return HttpResponse(message)
+
+
+def register(request):
+    if request.method == 'POST':
+        form = UserRegisterForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            messages.success(request, 'Votre compte a bien été créé')
+            """ On voit pas ce message, ça revient directement au menu, il faudrait pouvoir montrer
+            à l'utilisateur que ça a bien fonctionné, si possible en le renvoyant à la page login plutôt"""
+            return redirect('bestproduct:index')
+    else:
+        form = UserRegisterForm()
+        
+    return render(request, 'bestproduct/register.html', {'form': form})
+
+
+ 
+@login_required
+def profile(request):
+    return render(request, 'bestproduct/profile.html')
+
+
+@login_required
+def favorite(request):
+
+    user = request.user
+    fav = Product.objects.filter(userfavorite__user_name=user.id)
+    if fav:
+        product = Product.objects.filter(pk__in=fav)
+    else:
+        product = []
+
+    return render(request, 'bestproduct/favorite.html', {'favorite': product})
+
+

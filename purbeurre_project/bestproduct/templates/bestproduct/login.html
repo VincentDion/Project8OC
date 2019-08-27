@@ -1,0 +1,45 @@
+{% extends 'bestproduct/base.html' %}
+{% block content %}
+{% load static %}
+
+<header class="masthead">
+  <div class="container h-100">
+    <div class="row h-100 align-items-center justify-content-center text-center">
+      <div class="col-lg-10 align-self-end">
+        <h1 class="text-uppercase text-white font-weight-bold">Connexion</h1>
+        <hr class="divider my-4">
+      </div>
+
+      <div class="container my-auto">
+
+        <form method="POST">
+          {% csrf_token %}
+          <fieldset class="form-group">
+            <h3 class="mb-5 text-white-75 font-weight-light">Connectez-vous à votre compte Pur Beurre </h3>
+
+          <div class="fieldWrapper text-white-75 font-weight-light">
+            <label for="{{ form.username.id_for_label }}">Nom d'utilisateur</label>
+            {{ form.username }}
+          </div>
+
+          <div class="fieldWrapper text-white-75 font-weight-light">
+            <label for="{{ form.password.id_for_label }}">Mot de passe</label>
+            {{ form.password }}
+          </div>
+          </fieldset>
+          <div class="form-group">
+            <button class="btn btn-primary btn-l mt-50 mb-3" type="submit">Connexion</button>
+          </div>
+        </form>
+        
+        <div>
+          <p class="text-white-75 font-weight-lighter"> Vous n'avez pas de compte ? <a href="{% url 'bestproduct:register' %}">S'inscrire</a> </p>
+        </div>
+
+      </div>
+      
+    </div>
+  </div>
+</header>
+
+{% endblock %}
