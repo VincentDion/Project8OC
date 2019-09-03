@@ -14,6 +14,7 @@
 
   <!-- Font Awesome Icons -->
   <link href="{% static 'bestproduct/vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
+  <link href="{% static 'bestproduct/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700" rel="stylesheet">
@@ -44,12 +45,35 @@
                   <input type="text" name="query" id ="querynav" placeholder="Remplacer" required>
               </form>
           </li>
+
+          {% if user.is_authenticated %}
+
           <li class="nav-item">
-            <a href="#contact"> <i class="fas fa-user fa-2x" data-toggle="tooltip" title="Mon compte" ></i></a>
+            <a href="{% url 'bestproduct:profile' %}"> <i class="fas fa-user fa-2x mx-2" data-toggle="tooltip" title="Profil" ></i></a>
           </li>
+
           <li class="nav-item">
-            <a href="{% url 'bestproduct:login' %}"> <i class="fas fa-sign-in-alt fa-2x" data-toggle="tooltip" title="Se Connecter" ></i></a>
+            <a href="{% url 'bestproduct:favorite' %}"> <i class="fas fa-carrot fa-2x mx-2" data-toggle="tooltip" title="Mes aliments" ></i></a>
           </li>
+
+          <li class="nav-item">
+            <a href="{% url 'bestproduct:logout' %}"> <i class="fas fa-sign-out-alt fa-2x mx-2" data-toggle="tooltip" title="Se déconnecter" ></i></a>
+          </li>
+
+          <!-- https://wsvincent.com/django-user-authentication-tutorial-login-and-logout/ -->
+          
+          {% else %}
+
+          <li class="nav-item">
+            <a href="{% url 'bestproduct:register' %}"> <i class="fas fa-user-plus fa-2x mx-2" data-toggle="tooltip" title="Créer un compte" ></i></a>
+          </li>
+
+          <li class="nav-item">
+            <a href="{% url 'bestproduct:login' %}"> <i class="fas fa-sign-in-alt fa-2x mx-2" data-toggle="tooltip" title="Se connecter" ></i></a>
+          </li>
+          {% endif %}
+
+
         </ul>
       </div>
     </div>
@@ -62,7 +86,7 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-8 small mx-auto text-center">
-          <a href="/#contact">Mentions légales</a>
+          <a href="{% url 'bestproduct:legal_notice' %}">Mentions légales</a>
           <a id="cont" href="/#contact">Contact</a>
         </div>
       </div>

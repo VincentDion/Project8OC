@@ -17,6 +17,8 @@ urlpatterns = [
     path('favorite/', views.favorite, name='favorite'),
     path('login/', auth_views.LoginView.as_view(template_name='bestproduct/login.html'), name='login'),
     path('logout/', auth_views.LogoutView.as_view(template_name='bestproduct/logout.html'), name='logout'),
+    path('add_favorite/<str:product_id>/', views.add_favorite, name='add_favorite'),
+    path('legal_notice/', views.legal_notice, name='legal_notice'),
 ]
 
 """

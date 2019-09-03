@@ -1,0 +1,61 @@
+{% extends 'bestproduct/base.html' %}
+{% block content %}
+{% load static %}
+
+<header class="smallheader text-center text-white d-flex" style="background-image: url({% static 'bestproduct/img/colette.jpg' %})">
+  <div class="container my-auto">
+    <div class="row">
+      <div class="col-lg-10 mx-auto">
+        <hr>
+        <h2 class="text-uppercase">
+          <strong>Mentions légales</strong>
+        </h2>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="page-section" id="contact">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-12 text-center">
+          <h2 class="mt-0">Mentions à date du 28 Août 2019</h2>
+          <hr class="divider my-4">
+          <p class="text-muted mb-4 text-left">Le présent site a été réalisé par Vincent Dion, dans le cadre d'un projet éducatif du parcours "Développeur d'Applications Web Python" d'<a href="https://openclassrooms.com/fr/about-us">OpenClassrooms</a> (ce lien redirige vers le site OpenClassrooms). Ce projet vise à développer un site pour une entreprise fictive, ici nommée "Pur Beurre", en mobilisant les connaissances apprises lors des cours. Le rôle principal de ce site est de proposer une alternative plus saine à un produit de consommation alimentaire renseigné par un utilisateur et grâce à une partie de la base de données d'<a href="https://fr.openfoodfacts.org/">Open Food Facts</a>.</p>
+          <h4 class="text-left">CGU</h4>
+          <p class="text-muted mb-1 text-left">Au cours de sa navigation, l'utilisateur peut effectuer plusieurs actions sur le site :</p>
+          <ul class="text-muted mb-3 text-left">
+            <li> Cliquer sur des liens vers du contenu interne et qui amèneront l'utilisateur sur une autre page du même site (1) </li>
+            <li> Cliquer sur des liens vers du contenu externe et qui amèneront l'utilisateur sur une autre page d'un autre site (2) </li>
+            <li> Renseigner un champ de recherche de produit (dans la barre de navigation en haut à droite et dans la page d'acceuil), l'utilisateur sera alors redirigé sur une page contenant des produits de meilleure qualité (3) </li>
+            <li> Créer un compte permettant des actions supplémentaires (4) </li>
+            <li> Se connecter/déconnecter à son compte (5) </li>
+            <li> Sauvegarder des produits recherchés (6) </li>
+            <li> Consulter la liste des produits sauvegardés propres au compte de l'utilisateur (7) </li>
+          </ul>
+          <p class="text-muted mb-2 text-left">Il est rappelé à l'utilisateur que le présent site est un devoir éducatif, et est en conséquence loin des normes de sécurité informatiques des sites courants. Merci donc de considérer attentivement les commentaires suivants pour chacun des points :</p>
+          <p class="text-muted mb-1 text-left">(1) & (2) : Une fois le projet validé, celui-ci sera laissé en ligne le temps de la validation finale du parcours. Lors de cet intervalle, la maintenance de ce site sera minimale. Il est FORTEMENT suggéré à l'utilisateur d'être vigilant quant à la redirection des liens (sur ordinateur, les navigateurs peuvent proposer un aperçu en bas à gauche de l'écran), ceux-ci pouvant être corrompus si une activité malveillante a eu lieu sur le site et n'a pas été repérée. Concernant les liens vers du contenu externe, il est possible que ces liens meurent avec le temps, rendant une ressource inaccessible. Dans le cas où ces liens ne seraient pas mis à jour, le propriétaire du site prie l'utilisateur de l'excuser pour la gêne occasionnée et le remercie pour sa compréhension</p>
+          <p class="text-muted mb-1 text-left">(3) : La requête de l'utilisateur est traitée en back-end de ce site, elle n'est en aucun cas conservée à l'issue de la réponse serveur. La réponse serveur s'appuie sur un algorithme back-end et les données partielles (environ 5000 produits) de la base de données Open Food Facts (Cf crédits plus bas)</p>
+          <p class="text-muted mb-1 text-left">(4) & (5) : La création du compte demande à l'utilisateur de renseigner un nom, une adresse, un mot de passe et une confirmation de celui-ci. Ces informations sont sauvegardées sur le serveur qui héberge le présent site et ne peuvent pas être modifiées. Au regard de la nature éducative de ce site, il est FORTEMENT suggéré de renseigner une adresse mail fictive et erronée (exemple : cloud@clad.fr), le site ne vérifiant que la présence du @ lors du renseignement de l'adresse mail. L'utilisateur aura tout de même accès à toutes les fonctionnalités du site. 
+          L'utilisateur NE SERA JAMAIS CONTACTE PAR MAIL. Tout utilisateur qui renseignerait un mail valide et recevrait une communication provenant de ce présent site est la cible d'une attaque. Merci de votre vigilance.
+          Les connexions de l'utilisateur et la protection de son mot de passe sont assurés par les standards de Django.</p>
+          <p class="text-muted mb-3 text-left">(6) & (7) : Les produits sauvegardés par l'utilisateur sont enregistrés dans la base de données du site et ne peuvent pas être modifiés. Ils sont propres à chaque utilisateur disposant d'un compte sur le présent site.</p>
+          <p class="text-muted mb-3 text-left">En navigant sur le présent site, l'utilisateur est considéré comme informé des CGU mentionnées ci-dessus et en accepte les dispositions. Le propriétaire et l'hébergeur du présent site ne pourront pas être tenus responsables des conséquences du non-respect des recommandations de ces CGU. </p>
+
+          <h4 class="text-left">Crédits images et données</h4>
+          <ul class="text-muted mb-3 text-left">
+            <li>Le template général du site est une création de Start Bootstrap nommée "Creative" (version 5.1.7) et peut être trouvé à l'adresse suivante : <a href="https://startbootstrap.com/themes/creative/">https://startbootstrap.com/themes/creative/</a>
+            </li>
+            <li>Les images présentes sur ce site proviennent du film d'animation Ratatouille (2007) des studios Pixar : <a href="https://www.pixar.com/">https://www.pixar.com/.</a></li>
+            <li>Les icones de la barre de navigation en en-tête du site proviennent de la librairie Font Awesome et font partie de la distribution gratuite : <a href="https://fontawesome.com/icons?from=io">https://fontawesome.com/icons?from=io</a></li>
+            <li>Le site est réalisé grâce à Django, le framework web Python. Il utilise une base de données PostGreSQL </li>
+
+          </ul>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+{% endblock %}

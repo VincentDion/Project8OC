@@ -2,6 +2,8 @@ from django.shortcuts import render, get_object_or_404, redirect
 
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.core.exceptions import ObjectDoesNotExist
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
 import requests
 
@@ -23,39 +25,63 @@ def detail(request, product_id):
 
 def replace(request):
     query = request.GET.get('query')
-    # if not query:
-    #    message = "Aucun produit n'est demandé"
-
     
     products = Product.objects.filter(name__icontains=query)
 
-    """
-    Il faut prévoir comment gérer les erreurs, genre pas de produit ou pas de query
-    L'ancienne version avec message = en http ne fonctionne plus, cf commentaires
-    """
+    if len(products) > 0 :
+        choice = products[0]
+        substitutes_list = Product.objects.filter(category=choice.category, nutrition_grade__lt=choice.nutrition_grade).order_by("nutrition_grade")[:12]
+        
+        #Paginator : essais de changements du 28/08
+        page = request.GET.get('page', 1)
 
-    # if not products.exists():
-    #     message = "Misère de misère, nous n'avons trouvé aucun résultat !"
-    # else:
-    choice = products[0]
-    substitutes = Product.objects.filter(category=choice.category, nutrition_grade__lt=choice.nutrition_grade).order_by("nutrition_grade")[:6]
-    context = {
-        'name' : choice.name,
-        'image' : choice.picture,
-        'substitutes' : substitutes,
-    }
+        paginator = Paginator(substitutes_list, 6)
+        
 
-    return render(request, 'bestproduct/replace.html', context)
+        try:
+            substitutes = paginator.page(page)
+        except PageNotAnInteger:
+            # If page is not an integer, deliver first page
+            substitutes = paginator.page(1)
+        except EmptyPage:
+            # If page is out of range (e.g. 9999), deliver last page of results
+            substitutes = paginator.page(paginator.num_pages)
 
 
-        # substitutes = ["<li>{}</li>".format(product.name) for product in substitutes]
-        # message = """
-        #     Nous avons trouvé les produits correspondant à votre requête ! Les voici :
-        #     <ul>{}</ul>
-        #     Pour rappel, le produit à remplacer est : {}
-        # """.format(" ".join(substitutes), choice.name)
+        context = {
+            'name' : choice.name,
+            'image' : choice.picture,
+            'substitutes' : substitutes,
+            'paginate': True,
+        }
 
-    # return HttpResponse(message)
+        return render(request, 'bestproduct/replace.html', context)
+
+    else:
+        messages.warning(request, "Nous n'avons pas trouvé de produit correspondant")
+        return redirect('bestproduct:index')
+
+
+@login_required
+def favorite(request):
+
+    user = request.user
+    users_favorites_list = Product.objects.filter(userfavorite__user_name=user.id)
+    if len(users_favorites_list) > 0:
+        favorites_list = Product.objects.filter(pk__in=users_favorites_list)
+    else:
+        favorites_list = []
+    # Changement paginate jusqu'à return
+    page = request.GET.get('page', 1)
+    paginator = Paginator(favorites_list, 6)
+    try:
+        favorites = paginator.page(page)
+    except PageNotAnInteger:
+        favorites = paginator.page(1)
+    except EmptyPage:
+        favorites = paginator.page(paginator.num_pages)
+
+    return render(request, 'bestproduct/favorite.html', {'favorites': favorites})
 
 
 def register(request):
@@ -64,32 +90,34 @@ def register(request):
         if form.is_valid():
             form.save()
             username = form.cleaned_data.get('username')
-            messages.success(request, 'Votre compte a bien été créé')
-            """ On voit pas ce message, ça revient directement au menu, il faudrait pouvoir montrer
-            à l'utilisateur que ça a bien fonctionné, si possible en le renvoyant à la page login plutôt"""
-            return redirect('bestproduct:index')
+
+            # Fonctionnement des messages : https://docs.djangoproject.com/fr/2.2/ref/contrib/messages/
+            messages.success(request, 'Votre inscription est un succès, vous pouvez désormais vous connecter')
+            return redirect('bestproduct:login')
     else:
         form = UserRegisterForm()
         
     return render(request, 'bestproduct/register.html', {'form': form})
 
 
- 
+# décorateur : https://docs.djangoproject.com/fr/2.2/topics/auth/default/ 
 @login_required
 def profile(request):
     return render(request, 'bestproduct/profile.html')
 
 
 @login_required
-def favorite(request):
+def add_favorite(request, product_id):
+    try:
+        UserFavorite.objects.get(user_name_id=request.user.id, product_id=(product_id))
+        messages.warning(request, 'Ce produit est déjà dans vos favoris')
+        return redirect(request.META.get('HTTP_REFERER'))
+    except ObjectDoesNotExist:
+        UserFavorite.objects.create(user_name_id=request.user.id, product_id=(product_id))
+        messages.success(request, 'Le produit a été ajouté à vos favoris')
+        return redirect(request.META.get('HTTP_REFERER'))
 
-    user = request.user
-    fav = Product.objects.filter(userfavorite__user_name=user.id)
-    if fav:
-        product = Product.objects.filter(pk__in=fav)
-    else:
-        product = []
 
-    return render(request, 'bestproduct/favorite.html', {'favorite': product})
-
+def legal_notice(request):
+    return render(request, 'bestproduct/legal_notice.html')
 

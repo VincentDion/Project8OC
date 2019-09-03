@@ -1,5 +1,14 @@
 # Project8OC
 
+Project number 8 of the program : Python Web Developper of OpenClassrooms. Goal of this project is to create a website where users can find products of better nutritive quality. Database used is a fraction of the French Open Food Facts one (https://fr.openfoodfacts.org/)
+
+Python version 3.5.0
+Django version 2.2.5
+
+Web ressources used in this project are listed in the legal_notice.html file in bestproduct/templates
+
+# Versions log
+
 Version 0.1 (29/07/2019) :
 - Creation of env
 - Creation of project
@@ -33,3 +42,14 @@ Version 0.6 (27/08):
 - Updates of some links
 - Add of 404 and 500 error page but tests are needed under production state
 - Add of admin interface from where database had been filled with around 5000 products
+
+Version 0.7 (03/09):
+- User interface completed
+- Pages 404 and 500 completed
+- Links corrected
+- Legal Notice page added and completed
+- Pagination of products added (not working yet for replace view but working for favorites)
+- Test suite of around 20 tests covering all the pages of the site, since it is a school project, test suite is upload to github
+- Navbar is updated for when the user is connected and when he is not
+
+=> At this point, the website is almost complete, only a few minor adjustments to make before upload on Heroku.

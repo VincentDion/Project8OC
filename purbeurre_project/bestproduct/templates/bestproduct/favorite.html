@@ -1,6 +1,63 @@
 {% extends 'bestproduct/base.html' %}
 {% block content %}
+{% load static %}
 
-<h1> Favorite </h1>
+<header class="smallheader text-center text-white d-flex" style="background-image: url({% static 'bestproduct/img/remy.png' %})">
+  <div class="container my-auto">
+    <div class="row">
+      <div class="col-lg-10 mx-auto">
+        <hr>
+        <h2 class="text-uppercase">
+          <strong> Mes aliments </strong>
+        </h2>
+      </div>
+    </div>
+  </div>
+</header>
 
+<section>
+  <div class="container">
+    <div class="col-md-18 text-center">
+      <h4 class="section-heading padding-tb">La liste de vos aliments sauvegardés </h4>
+      <div class="row">
+        {% for favorite in favorites %}
+          <div class="col-sm-4 text-center">
+            <a href="/detail/{{ favorite.id }}">
+              <img class="img-fluid img-product" src="{{ favorite.picture }}" alt="{{ favorite.name }}">
+            </a>
+            <div class="nutrigrade-icon">{{ favorite.nutrition_grade }}</div>
+            <h5 class="padding-top"><a href="/detail/{{ favorite.id }}">{{ favorite.name }}</a></h5>
+
+          </div>
+          {% if forloop.counter|divisibleby:3 %}<div class="clearfix"></div>{% endif %}
+        {% endfor %}
+      </div>
+
+    <!-- https://simpleisbetterthancomplex.com/tutorial/2016/08/03/how-to-paginate-with-django.html -->
+    {% if favorites.has_other_pages %}
+      <ul class="pagination">
+        {% if favorites.has_previous %}
+          <li><a href="?page={{ favorites.previous_page_number }}">&laquo;</a></li>
+        {% else %}
+          <li class="disabled"><span>&laquo;</span></li>
+        {% endif %}
+        {% for i in favorites.paginator.page_range %}
+          {% if favorites.number == i %}
+            <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+          {% else %}
+            <li><a href="?page={{ i }}">{{ i }}</a></li>
+          {% endif %}
+        {% endfor %}
+        {% if favorites.has_next %}
+          <li><a href="?page={{ favorites.next_page_number }}">&raquo;</a></li>
+        {% else %}
+          <li class="disabled"><span>&raquo;</span></li>
+        {% endif %}
+      </ul>
+    {% endif %}
+
+
+    </div>
+  </div>
+</section>
 {% endblock %}

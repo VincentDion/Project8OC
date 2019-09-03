@@ -12,11 +12,8 @@
         <div class="col-lg-8 align-self-baseline">
           <p class="text-white-75 font-weight-light mb-5">Nous ne sommes pas au 404, cliquez sur le bouton pour revenir au menu</p>
 
-          <!-- ICI CHANGEMENTS FAIRE LE BOUTON POUR REVENIR AU MENU -->
-          <form id="replace"  action="{% url 'bestproduct:replace' %}" method="get" accept-charset="utf-8">
-                <input type="text" name="query" id ="query" placeholder="Produit à remplacer" required>
-                <button type="submit" class="btn btn-primary btn-search">Remplacer</button>
-          </form>
+
+          <a href="{% url 'bestproduct:index' %}"><button type="submit" class="btn btn-primary btn-search">Retourner au menu</button></a>
         </div>
       </div>
     </div>
