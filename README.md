@@ -53,3 +53,7 @@ Version 0.7 (03/09):
 - Navbar is updated for when the user is connected and when he is not
 
 => At this point, the website is almost complete, only a few minor adjustments to make before upload on Heroku.
+
+Version 0.8 (04/09)
+- Preparation for upload
+- To do list : add the settings.py file to github with os.environ + add pagination to replace functionnality + minor adjustments here and there

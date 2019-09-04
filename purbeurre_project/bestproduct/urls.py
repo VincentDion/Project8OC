@@ -1,8 +1,5 @@
 from django.urls import path
-
-from django.contrib import admin
 from django.contrib.auth import views as auth_views
-from django.urls import path, include
 
 from . import views
 
@@ -15,15 +12,13 @@ urlpatterns = [
     path('register/', views.register, name='register'),
     path('profile/', views.profile, name='profile'),
     path('favorite/', views.favorite, name='favorite'),
-    path('login/', auth_views.LoginView.as_view(template_name='bestproduct/login.html'), name='login'),
-    path('logout/', auth_views.LogoutView.as_view(template_name='bestproduct/logout.html'), name='logout'),
-    path('add_favorite/<str:product_id>/', views.add_favorite, name='add_favorite'),
+    path('login/', auth_views.LoginView.as_view(
+         template_name='bestproduct/login.html'),
+         name='login'),
+    path('logout/', auth_views.LogoutView.as_view(
+         template_name='bestproduct/logout.html'),
+         name='logout'),
+    path('add_favorite/<str:product_id>/', views.add_favorite,
+         name='add_favorite'),
     path('legal_notice/', views.legal_notice, name='legal_notice'),
 ]
-
-"""
-urlpatterns = [
-    url(r'^(?P<product_id>[0-9]+)/$', views.detail),
-    url(r'^replace/$', views.replace),
-]
-"""

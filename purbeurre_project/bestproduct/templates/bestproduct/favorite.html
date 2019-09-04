@@ -32,8 +32,13 @@
           {% if forloop.counter|divisibleby:3 %}<div class="clearfix"></div>{% endif %}
         {% endfor %}
       </div>
+    </div>
+  </div>
+</section>
 
     <!-- https://simpleisbetterthancomplex.com/tutorial/2016/08/03/how-to-paginate-with-django.html -->
+<section>
+  <div class="container">
     {% if favorites.has_other_pages %}
       <ul class="pagination">
         {% if favorites.has_previous %}
@@ -43,9 +48,9 @@
         {% endif %}
         {% for i in favorites.paginator.page_range %}
           {% if favorites.number == i %}
-            <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+            <li class="active mx-1"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
           {% else %}
-            <li><a href="?page={{ i }}">{{ i }}</a></li>
+            <li class="mx-1"><a href="?page={{ i }}">{{ i }}</a></li>
           {% endif %}
         {% endfor %}
         {% if favorites.has_next %}
@@ -56,8 +61,6 @@
       </ul>
     {% endif %}
 
-
-    </div>
   </div>
 </section>
 {% endblock %}

@@ -12,6 +12,7 @@
         </h2>
       </div>
     </div>
+    <a href="/detail/{{ id }}"><button class="btn btn-primary btn-l mt-50" value="fiche_produit"> Fiche produit</button></a>
   </div>
 </header>
 
@@ -50,7 +51,8 @@
           </div>
           {% if forloop.counter|divisibleby:3 %}<div class="clearfix"></div>{% endif %}
         {% endfor %}
-
+    <!-- paginate is commented while working on a bug -->
+    <!--
         {% if substitutes.has_other_pages %}
           <ul class="pagination">
             {% if substitutes.has_previous %}
@@ -60,9 +62,9 @@
             {% endif %}
             {% for i in substitutes.paginator.page_range %}
               {% if substitutes.number == i %}
-                <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+                <li class="active mx-1"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
               {% else %}
-                <li><a href="?page={{ i }}">{{ i }}</a></li>
+                <li class="mx-1"><a href="?page={{ i }}">{{ i }}</a></li>
               {% endif %}
             {% endfor %}
             {% if substitutes.has_next %}
@@ -72,6 +74,7 @@
             {% endif %}
           </ul>
         {% endif %}
+    -->
 
       </div>
     </div>

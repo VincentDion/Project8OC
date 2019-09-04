@@ -20,7 +20,7 @@ class LegalNoticePageTestCase(TestCase):
 
 class DetailPageTestCase(TestCase):
     def setUp(self):
-        impossible = Product.objects.create(name="produit impossible")
+        Product.objects.create(name="produit impossible")
         self.product = Product.objects.get(name="produit impossible")
 
     def test_detail_page_returns_200(self):
@@ -37,7 +37,7 @@ class DetailPageTestCase(TestCase):
 # Documentation : https://docs.djangoproject.com/fr/2.2/topics/testing/tools/
 class LoginPageTestCase(TestCase):
     def setUp(self):
-        test_user = User.objects.create_user('john', 'lennon@thebeatles.com', 'johnpassword')
+        User.objects.create_user('john', 'lennon@thebeatles.com', 'johnpassword')
 
     def test_login_page(self):
         response = self.client.get(reverse('besproduct:login'))
@@ -58,7 +58,7 @@ class LoginPageTestCase(TestCase):
 
 class ProfilePageTestCase(TestCase):
     def setUp(self):
-        test_user = User.objects.create_user('john', 'lennon@thebeatles.com', 'johnpassword')
+        User.objects.create_user('john', 'lennon@thebeatles.com', 'johnpassword')
 
     def test_profile_page_returns_302_if_not_connected(self):
         # 302 because redirected and end up on 404 page
@@ -77,7 +77,7 @@ class ReplacePageTestCase(TestCase):
     def setUp(self):
         # Cleanse of DB to test on a fresh one
         Product.objects.all().delete()
-        impossible = Product.objects.create(name="impossible")
+        Product.objects.create(name="impossible")
 
     def test_replace_page_returns_200_if_product_exists(self):
         c = Client()
@@ -95,7 +95,7 @@ class RegisterPageTestCase(TestCase):
     def setUp(self):
         # Cleanse of DB to test on a fresh one
         User.objects.all().delete()
-        test_user = User.objects.create_user('paul', 'paul@thebeatles.com', 'paulpassword')
+        User.objects.create_user('paul', 'paul@thebeatles.com', 'paulpassword')
 
     def test_register_page(self):
         response = self.client.get(reverse('besproduct:register'))
@@ -123,14 +123,14 @@ class RegisterPageTestCase(TestCase):
 
     def test_register_success_create_new_user_in_db(self):
         c = Client()
-        response = c.post('/register/', {'username': 'john', 'email': 'lennon@thebeatles.com', 'password1': 'johnpassword', 'password2': 'johnpassword'})
+        c.post('/register/', {'username': 'john', 'email': 'lennon@thebeatles.com', 'password1': 'johnpassword', 'password2': 'johnpassword'})
         user = User.objects.get(username="john")
         self.assertEqual(user.username, "john")
 
 
 class FavoritePageTestCase(TestCase):
     def setUp(self):
-        test_user = User.objects.create_user('john', 'lennon@thebeatles.com', 'johnpassword')
+        User.objects.create_user('john', 'lennon@thebeatles.com', 'johnpassword')
 
     def test_favorite_page_returns_200_if_connected(self):
         c = Client()
@@ -147,4 +147,3 @@ class FavoritePageTestCase(TestCase):
 # add favorite function
     # test that a new favorite is indeed added to the DB
     # test that a favorite already in the DB can't be added twice
-
