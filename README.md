@@ -5,7 +5,11 @@ Project number 8 of the program : Python Web Developper of OpenClassrooms. Goal 
 Python version 3.5.0
 Django version 2.2.5
 
-Web ressources used in this project are listed in the legal_notice.html file in bestproduct/templates
+The application can be found at the following adress : https://purbeurre-p8vd.herokuapp.com
+
+Web ressources used in this project are listed in the legal_notice.html file in bestproduct/templates. 
+
+To test the application, clone the repository and change the settings file with your own private key.
 
 # Versions log
 
@@ -57,3 +61,7 @@ Version 0.7 (03/09):
 Version 0.8 (04/09)
 - Preparation for upload
 - To do list : add the settings.py file to github with os.environ + add pagination to replace functionnality + minor adjustments here and there
+
+Version 1.0 (19/09)
+- Website is now live at the following adress : https://purbeurre-p8vd.herokuapp.com
+- To not overload the database nd to not copy the whole database of OpenFoodFacts, only products for few categories can be found for a total of 5000 products approx. (category : fromage à tartiner, jus d'orange, jus de pamplemousse, jus de raisin, jus de pomme, jus multifruits, cremes fraiches, biscuits apéritifs, confitures d'abricot, confitures de fruits rouges, pâte à tartiner au chocolat, beurres, huiles d'olive).
