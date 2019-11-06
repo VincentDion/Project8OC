@@ -7,4 +7,6 @@ __pycache__/
 purbeurre_project/bestproduct/__pycache__/models.cpython-35.pyc
 purbeurre_project/bestproduct/__pycache__/urls.cpython-35.pyc
 purbeurre_project/bestproduct/__pycache__/views.cpython-35.pyc
-questions_entretien.docx
+.travil.yml
+../venv/
+/purbeurre_project/purbeurre_project/settings.py

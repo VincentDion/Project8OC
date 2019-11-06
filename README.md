@@ -65,3 +65,7 @@ Version 0.8 (04/09)
 Version 1.0 (19/09)
 - Website is now live at the following adress : https://purbeurre-p8vd.herokuapp.com
 - To not overload the database nd to not copy the whole database of OpenFoodFacts, only products for few categories can be found for a total of 5000 products approx. (category : fromage à tartiner, jus d'orange, jus de pamplemousse, jus de raisin, jus de pomme, jus multifruits, cremes fraiches, biscuits apéritifs, confitures d'abricot, confitures de fruits rouges, pâte à tartiner au chocolat, beurres, huiles d'olive).
+
+Version 1.1 (06/11)
+- Preparation for the 11th project of OpenClassrooms
+- DB has been changed to sqlite3 because of troubles with psycopg2 module

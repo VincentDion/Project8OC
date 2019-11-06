@@ -11,20 +11,3 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('bestproduct.urls', namespace='besproduct')),
 ]
-
-"""
-urlpatterns = [
-    url(r'^$', views.index),
-    url(r'^bestproduct/', include(('bestproduct.urls', 'bestproduct'), namespace='bestproduct')),
-    url(r'^admin/', admin.site.urls)
-]
-"""
-if settings.DEBUG:
-    import debug_toolbar
-    urlpatterns = [
-        path('__debug__/', include(debug_toolbar.urls)),
-
-        # For django versions before 2.0:
-        # url(r'^__debug__/', include(debug_toolbar.urls)),
-
-    ] + urlpatterns
