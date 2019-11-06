@@ -10,3 +10,6 @@ purbeurre_project/bestproduct/__pycache__/views.cpython-35.pyc
 .travil.yml
 ../venv/
 /purbeurre_project/purbeurre_project/settings.py
+/purbeurre_project/db.sqlite3
+/purbeurre_project/bestproduct/migrations/0001_initial.py
+/purbeurre_project/bestproduct/migrations/__pycache__

@@ -69,3 +69,7 @@ Version 1.0 (19/09)
 Version 1.1 (06/11)
 - Preparation for the 11th project of OpenClassrooms
 - DB has been changed to sqlite3 because of troubles with psycopg2 module
+
+Version 1.2 (06/11)
+- To try the application, you must fill a secret Django key in the settings.py file, as well as using the commands migrate & fill_db.
+- Small fix on Login and Logout function
