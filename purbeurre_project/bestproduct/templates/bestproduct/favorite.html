@@ -27,7 +27,14 @@
             </a>
             <div class="nutrigrade-icon">{{ favorite.nutrition_grade }}</div>
             <h5 class="padding-top"><a href="/detail/{{ favorite.id }}">{{ favorite.name }}</a></h5>
-
+            
+            {% if user.is_authenticated %}
+              <form method="POST" action="{% url 'bestproduct:favorite' product_id=favorite.id %}">
+                {% csrf_token %}
+                <input class="btn btn-primary btn-l mt-50" type="submit" value="Supprimer" id="{{new_product.id}}">
+              </form>
+            {% endif %}
+            
           </div>
           {% if forloop.counter|divisibleby:3 %}<div class="clearfix"></div>{% endif %}
         {% endfor %}

@@ -1,5 +1,5 @@
-/env
-/purbeurre_project/purbeurre_project/settings.py
+/venv
+
 /purbeurre_project/purbeurre_project/__pycache__/
 /purbeurre_project/__pycache__/
 /purbeurre_project/bestproduct/migrations/__pycache__/
@@ -13,3 +13,4 @@ purbeurre_project/bestproduct/__pycache__/views.cpython-35.pyc
 /purbeurre_project/db.sqlite3
 /purbeurre_project/bestproduct/migrations/0001_initial.py
 /purbeurre_project/bestproduct/migrations/__pycache__
+/purbeurre_project/purbeurre_project/secret_key.py

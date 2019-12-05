@@ -95,6 +95,12 @@ def favorite(request):
     except EmptyPage:
         favorites = paginator.page(paginator.num_pages)
 
+
+    if request.method == 'POST':
+        delete = UserFavorite.objects.get(user_name_id=request.user.id,
+                                       product_id=(product_id))
+        delete.delete()
+
     return render(request, 'bestproduct/favorite.html',
                   {'favorites': favorites})
 
