@@ -18,6 +18,15 @@
 <section>
   <div class="container">
     <div class="col-md-18 text-center">
+
+      {% if messages %}
+          <div class="messages my-1">
+              {% for message in messages %}
+              <p{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p>
+              {% endfor %}
+          </div>
+      {% endif %}
+    
       <h4 class="section-heading padding-tb">La liste de vos aliments sauvegardés </h4>
       <div class="row">
         {% for favorite in favorites %}
@@ -29,7 +38,7 @@
             <h5 class="padding-top"><a href="/detail/{{ favorite.id }}">{{ favorite.name }}</a></h5>
             
             {% if user.is_authenticated %}
-              <form method="POST" action="{% url 'bestproduct:favorite' product_id=favorite.id %}">
+              <form method="POST" action="{% url 'bestproduct:del_favorite' product_id=favorite.id %}">
                 {% csrf_token %}
                 <input class="btn btn-primary btn-l mt-50" type="submit" value="Supprimer" id="{{new_product.id}}">
               </form>

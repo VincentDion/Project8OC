@@ -73,3 +73,6 @@ Version 1.1 (06/11)
 Version 1.2 (06/11)
 - To try the application, you must fill a secret Django key in the settings.py file, as well as using the commands migrate & fill_db.
 - Small fix on Login and Logout function
+
+Version 1.3 (05/12)
+- Add of new functionnality : registered user can now delete favorite products. Tests comming soon.

@@ -20,5 +20,7 @@ urlpatterns = [
          name='logout'),
     path('add_favorite/<str:product_id>/', views.add_favorite,
          name='add_favorite'),
+    path('del_favorite/<str:product_id>/', views.del_favorite,
+         name='del_favorite'),
     path('legal_notice/', views.legal_notice, name='legal_notice'),
 ]
