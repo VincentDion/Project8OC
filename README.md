@@ -75,4 +75,7 @@ Version 1.2 (06/11)
 - Small fix on Login and Logout function
 
 Version 1.3 (05/12)
-- Add of new functionnality : registered user can now delete favorite products. Tests comming soon.
+- Add of new functionnality : registered user can now delete favorite products. Tests coming soon.
+
+Version 1.4 (06/12)
+- Add of functionnality : being able to change mail address. Tests coming soon

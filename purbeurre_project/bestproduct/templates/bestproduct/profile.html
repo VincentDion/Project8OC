@@ -7,9 +7,21 @@
         <div class="col-lg-10 align-self-end">
           <h1 class="text-uppercase text-white font-weight-bold">Ahoy {{ user.username }} !</h1>
           <hr class="divider my-4">
+            <!-- messages : https://docs.djangoproject.com/fr/2.2/ref/contrib/messages/ -->
+            {% if messages %}
+            <ul class="messages text-white-75 my-1">
+                {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
         </div>
+
         <div class="col-lg-8 align-self-baseline">
           <p class="text-white-75 font-weight-light mb-5"> {{ user.email }} </p>
+        </div>
+        <div class="col-lg-8 align-self-baseline">
+          <a href="/mail_change/"><button class="btn btn-primary btn-l mt-50" value="fiche_produit"> Modifier l'adresse </button></a>
         </div>
       </div>
     </div>

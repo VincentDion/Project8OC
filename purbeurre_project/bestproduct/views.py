@@ -4,8 +4,9 @@ from django.contrib import messages
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
+from django.contrib.auth.models import User
 from .models import Product, UserFavorite
-from .forms import UserRegisterForm
+from .forms import UserRegisterForm, ChangeMailForm
 
 
 def index(request):
@@ -126,6 +127,27 @@ def del_favorite(request, product_id):
     delete.delete()
     messages.success(request, 'Le produit a été retiré de vos favoris')
     return redirect(request.META.get('HTTP_REFERER'))
+
+@login_required
+def mail_change(request):
+    """ Change of user's email adresse """
+
+    if request.method == 'POST':
+        form = ChangeMailForm(request.POST)
+        if form.is_valid():
+            change = User.objects.get(email=request.user.email)
+            change.email = form.cleaned_data.get('email')
+            change.save()
+
+            # cleaned data : https://docs.djangoproject.com/fr/2.1/ref/forms/api/#django.forms.Form.cleaned_data
+
+            messages.success(request,
+                             'Votre adresse a été modifiée')
+            return redirect('bestproduct:profile')
+    else:
+        form = ChangeMailForm()
+
+    return render(request, 'bestproduct/mail_change.html', {'form': form})
 
 def legal_notice(request):
     """ Display of Legal Notice page """

@@ -23,4 +23,5 @@ urlpatterns = [
     path('del_favorite/<str:product_id>/', views.del_favorite,
          name='del_favorite'),
     path('legal_notice/', views.legal_notice, name='legal_notice'),
+    path('mail_change/', views.mail_change, name='mail_change'),
 ]
