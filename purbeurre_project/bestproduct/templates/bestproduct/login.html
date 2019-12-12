@@ -22,7 +22,7 @@
         {% endif %}
             
 
-        <form method="POST">
+        <form action="{% url 'bestproduct:login' %}" method="POST" name="login">
           {% csrf_token %}
           <fieldset class="form-group">
             <h3 class="mb-5 text-white-75 font-weight-light">Connectez-vous à votre compte Pur Beurre </h3>

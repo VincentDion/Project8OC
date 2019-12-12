@@ -13,7 +13,7 @@
       <div class="container my-auto">
             
 
-        <form method="POST">
+        <form action="{% url 'bestproduct:mail_change' %}" method="POST" name="mail_change">
           {% csrf_token %}
           <fieldset class="form-group">
 

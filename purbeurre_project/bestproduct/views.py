@@ -59,7 +59,7 @@ def replace(request):
         return redirect('bestproduct:index')
 
 
-@login_required
+@login_required(login_url='/login')
 def favorite(request):
     """ Display list of favorite products for connected user """
     user = request.user
@@ -100,13 +100,14 @@ def register(request):
     return render(request, 'bestproduct/register.html', {'form': form})
 
 
-@login_required
+@login_required(login_url='/login')
 def profile(request):
     """ Display of profile page, only if user is logged in """
-    return render(request, 'bestproduct/profile.html')
+    user = request.user
+    return render(request, 'bestproduct/profile.html', {'email':user.email})
 
 
-@login_required
+@login_required(login_url='/login')
 def add_favorite(request, product_id):
     """ Function for adding a favorite product from the replace page """
     try:
@@ -120,15 +121,23 @@ def add_favorite(request, product_id):
         messages.success(request, 'Le produit a été ajouté à vos favoris')
         return redirect(request.META.get('HTTP_REFERER'))
 
-@login_required
+@login_required(login_url='/login')
 def del_favorite(request, product_id):
-    delete = UserFavorite.objects.get(user_name_id=request.user.id,
-                                      product_id=(product_id))
-    delete.delete()
-    messages.success(request, 'Le produit a été retiré de vos favoris')
-    return redirect(request.META.get('HTTP_REFERER'))
+    try:
+        UserFavorite.objects.get(user_name_id=request.user.id,
+                                 product_id=(product_id))
+        delete = UserFavorite.objects.get(user_name_id=request.user.id,
+                                          product_id=(product_id))
+        delete.delete()
+        messages.success(request, 'Le produit a été retiré de vos favoris')
+        #return redirect(request.META.get('HTTP_REFERER'))
+        return redirect('bestproduct:favorite')
+    except ObjectDoesNotExist:
+        messages.warning(request, 'Le produit ne figure pas dans vos favoris')
+        return redirect('bestproduct:favorite')
 
-@login_required
+
+@login_required(login_url='/login')
 def mail_change(request):
     """ Change of user's email adresse """
 

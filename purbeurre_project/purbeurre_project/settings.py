@@ -34,6 +34,7 @@ LOGOUT_REDIRECT_URL = '/'
 
 # Application definition
 
+# add of django_nose for test coverage : 10/12/2019
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -42,7 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'bestproduct',
-]
+]    
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -74,6 +75,16 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'purbeurre_project.wsgi.application'
 
+"""
+# Added for test coverage : 10/12/2019
+TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
+
+# Tell nose to measure coverage on the 'foo' and 'bar' apps
+NOSE_ARGS = [
+    '--with-coverage',
+    '--cover-package=bestproduct',
+]
+"""
 
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases

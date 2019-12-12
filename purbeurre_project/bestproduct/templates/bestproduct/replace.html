@@ -42,8 +42,7 @@
             {% if user.is_authenticated %}
               <form method="POST" action="{% url 'bestproduct:add_favorite' product_id=substitute.id %}">
                 {% csrf_token %}
-                <!-- <p type="submit" value="Submit" class="font-weight-light"><i class="fa fa-floppy-o" aria-hidden="true"></i> Sauvegarder </p> -->
-                <!-- A FAIRE VOIR PENDANT LE COWORKING DE SAMEDI -->
+
                 <input class="btn btn-primary btn-l mt-50" type="submit" value="Sauvegarder" id="{{new_product.id}}">
               </form>
             {% endif %}
@@ -51,30 +50,6 @@
           </div>
           {% if forloop.counter|divisibleby:3 %}<div class="clearfix"></div>{% endif %}
         {% endfor %}
-    <!-- paginate is commented while working on a bug -->
-    <!--
-        {% if substitutes.has_other_pages %}
-          <ul class="pagination">
-            {% if substitutes.has_previous %}
-              <li><a href="?page={{ substitutes.previous_page_number }}">&laquo;</a></li>
-            {% else %}
-              <li class="disabled"><span>&laquo;</span></li>
-            {% endif %}
-            {% for i in substitutes.paginator.page_range %}
-              {% if substitutes.number == i %}
-                <li class="active mx-1"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
-              {% else %}
-                <li class="mx-1"><a href="?page={{ i }}">{{ i }}</a></li>
-              {% endif %}
-            {% endfor %}
-            {% if substitutes.has_next %}
-              <li><a href="?page={{ substitutes.next_page_number }}">&raquo;</a></li>
-            {% else %}
-              <li class="disabled"><span>&raquo;</span></li>
-            {% endif %}
-          </ul>
-        {% endif %}
-    -->
 
       </div>
     </div>
