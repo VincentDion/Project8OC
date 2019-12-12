@@ -533,10 +533,24 @@ class MailChangePageTestCase(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'bestproduct/mail_change.html')
 
-# New things :
-    # Systematic test of template used, and context if so // Améliore la partie test d'intégration
 
-# Doc new tests :
+# Documentation for new tests :
     # http://www.test-recette.fr/tests-techniques/deployer-tests-integration/tests-integration-django.html
     # class response : https://docs.djangoproject.com/fr/3.0/topics/testing/tools/
     # test login : https://stackoverflow.com/questions/7367509/login-in-django-testing-framework
+    # URLField : http://www.learningaboutelectronics.com/Articles/How-to-create-a-URLField-in-Django.php
+    # test type : https://stackoverflow.com/questions/33657463/python-test-to-check-instance-type/33657828
+    # https://docs.djangoproject.com/fr/2.2/_modules/django/test/utils/
+    # https://stackoverflow.com/questions/14951356/django-testing-if-the-page-has-redirected-to-the-desired-url
+    # https://docs.djangoproject.com/fr/3.0/topics/http/urls/
+    # Test coverage : https://pypi.org/project/django-nose/
+    # https://stackoverflow.com/questions/53461410/make-user-email-unique-django/53461823
+    # https://docs.djangoproject.com/fr/3.0/ref/request-response/
+    # https://stackoverflow.com/questions/50114484/django-why-is-my-form-sending-post-data-but-returning-request-method-get
+    # https://stackoverflow.com/questions/40750803/django-test-request-method-post-not-working
+    # https://stackoverflow.com/questions/44726762/django-test-client-client-post-sends-get-request
+    # https://docs.djangoproject.com/en/3.0/topics/forms/#the-view
+    # https://medium.com/@fro_g/making-post-requests-work-with-django-tests-3d9ad539e11f
+    # https://stackoverflow.com/questions/2619102/djangos-self-client-login-does-not-work-in-unit-tests
+    # https://www.pythoncircle.com/post/424/solving-django-error-noreversematch-at-url-with-arguments-and-keyword-arguments-not-found/
+    # https://docs.djangoproject.com/fr/3.0/ref/request-response/
