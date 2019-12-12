@@ -79,3 +79,10 @@ Version 1.3 (05/12)
 
 Version 1.4 (06/12)
 - Add of functionnality : being able to change mail address. Tests coming soon
+
+Version 1.5 (12/12)
+- Full rework of the test suite, with more complete tests, including for the new functionnalities of 1.3 & 1.4
+- Few optimizations on views to adapt to new tests
+- Page requiring a connected user now correctly redirect non connected user to login page, after which he is redirected to the page it tried to access first.
+- We would like to implement a test coverage reporting, working on it
+- There is still a function which is not tested (add_favorite) due to an unresolved problem, fix coming soon
